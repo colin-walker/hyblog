@@ -56,7 +56,7 @@ This is a third post with a **title**.
 
 To start a new post just type @@ and you're off. The time will be added automatically when saving.
 
-So, what else is going on here? Having a hash on the first line of a post indicates that it has a title - titles are not mandatory. Also, Adding an exclamation point followed by a space at the start of a post will make it a draft which won't show on the page or in the RSS feed. When you're ready to make it live just delete the exclamation point.
+So, what else is going on here? Having a hash followed by a space on the first line of a post indicates that it has a title - titles are not mandatory. Also, Adding an exclamation point followed by a space at the start of a post will make it a draft which won't show on the page or in the RSS feed. When you're ready to make it live just delete the exclamation point.
 
 Each day is saved to it's own .md file in a year/month folder structure - the filename will be in the format yyyy-mm-dd.md. These folders are automatically created as needed. For now the year folders sit in the root of your chosen path but this will be amended in a future version to be in a sub folder.
 
