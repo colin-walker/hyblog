@@ -140,4 +140,5 @@ This is version 1.0 of hyblog, more a proof of concept than anything but updates
 There is no specific roadmap for development but things I want to do are:
 
 - move post & comment files to a sub folder (this will require moving them on upgrade, I'll see if I can write the code to do it automatically)
+- rework posting/editing to hide post separators/date from the end user
 - make hyblog extensible by creating an easy way to make new pages just by typing the name and markdown contents into a form
