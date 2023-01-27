@@ -1,0 +1,31 @@
+DirectoryIndex hyblog.php
+
+<Files config.php>
+Order Deny,Allow
+Deny from all
+</Files>
+
+<FilesMatch ".(jpg|jpeg|png|webp|js)$">
+    Header set Cache-Control "max-age=2629746, public"
+</FilesMatch>
+
+<FilesMatch ".(css)$">
+    Header set Cache-Control "max-age=100, public"
+</FilesMatch>
+
+<FilesMatch ".(xml)$">
+<ifModule mod_headers.c>
+AddDefaultCharset UTF-8
+Header set Content-Type "application/xml"
+Header set x-content-type-options "nosniff"
+</ifModule>
+</FilesMatch>
+
+# BEGIN Redirection
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
+</IfModule>
+# END Redirection
