@@ -46,7 +46,7 @@ require_once('../config.php');
 						It's still in very early stages of development as is primarily an experiment to see what can be done.
 						<br/>
 						<br/>
-						hyblog was created by <a href="https://github.com/colin-walker">Colin Walker</`> and can be found on GitHub <a href="https://github.com/colin-walker/hyblog">Here</a>.
+						hyblog was created by <a href="https://github.com/colin-walker">Colin Walker</a> and can be found on GitHub <a href="https://github.com/colin-walker/hyblog">Here</a>.
 				</article>
 			</main>
 		</div><!-- #primary -->
