@@ -43,7 +43,7 @@ require_once('../config.php');
 						
 						Hyblog uses Emanuil Rusev's <a href="https://github.com/erusev/parsedown">Parsedown</a> & <a href="https://github.com/erusev/parsedown-extra">ParsedownExtra</a> libraries for Markdown.
 						
-						It's still in very early stages of development as is primarily an experiment to see what can be done.
+						It's still in very early stages of development and is primarily an experiment to see what can be done without a database.
 						<br/>
 						<br/>
 						hyblog was created by <a href="https://github.com/colin-walker">Colin Walker</a> and can be found on GitHub <a href="https://github.com/colin-walker/hyblog">Here</a>.
