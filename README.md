@@ -28,7 +28,7 @@ Hyblog operates on a daily basis. Each day is a separate entity and the post for
 
 When logged in, if there are no posts you will be presented with a simple form:
 
-![hyblog post form](https://colinwalker.me.uk/uploads/2023/01/post_form.png)
+![hyblog post form](https://colinwalker.me.uk/uploads/2023/01/postform.png)
 
 Just start typing in markdown and hit post when done. It's as easy as that to create your first post! If you want to edit it or post something else just double-click/double-tap anywhere in the content and you will be taken back to the post form.
 
@@ -60,6 +60,14 @@ So, what else is going on here? Having a hash on the first line of a post indica
 
 Each day is saved to it's own .md file in a year/month folder structure - the filename will be in the format yyyy-mm-dd.md. These folders are automatically created as needed. For now the year folders sit in the root of your chosen path but this will be amended in a future version to be in a sub folder.
 
+**Media uploads**
+
+Above the post form is a "Choose file" button which allows you to select a file to upload. After selecting a file the button will change to "Selected" - you can click this to choose a different file or click "Upload". Once the file has been uploaded the original button will change to "Copy path", click this to copy the full external path to the file to your clipboard.
+
+Uploads are place in a year/month folder structure under http(s)://{your chosen url}/uploads/
+
+Images of type jpg, jpeg & png will have a .webp version created and placed in the same location.
+
 **Comments**
 
 Clicking the comment icon before each post shows a simple comment form. When a comment is submitted a new .md file is created in the same location as the post files. The filename will be comments**X**-yyyy-mm-dd.md where 'X' is the number of the post for that day.
@@ -82,3 +90,50 @@ You can also change your password here.
 
 The username and password are securely hashed and saved to config.php along with the other constants created by setup or reset on the admin page.
 
+**Extras**
+
+Some additional formatting and content options are included in content_filters.php to make things a bit quicker when posting:
+
+- `[hr]` - will be converted to a centered, horizontal rule with 33% width
+- `~~text here~~` - for strikethrough
+- `~text here~` - for underline
+- `^text here^` - for superscript
+- `::text here::` - to highlight
+- `==text here==` - for HTML mark tags
+- `[a[link to audio file]a]` - to include audio tags for the given link
+- `[v[link to video file]v]` - to include a video
+- `[y[YouTube embed ID]y]` - to embed a YouTube video, NOTE: you only need to include the video ID
+- `%%text here%%` - to include 'badges' or alerts such as 'Update' or 'Breaking' - these will be highlighted in a coloured badge or bubble
+- `!!details text>!summary text!<` - to use HTML details/summary tags
+- `![path_to_image,classes,alt_text]]` - this lets you put in a jpg, jpeg or png image and have it automatically replaced by a .webp image if the browser supports them. Classes are non-mandatory but see below.
+
+**Classes and Markdown extra**
+
+hyblog uses Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown) & [ParsedownExtra](https://github.com/erusev/parsedown-extra) libraries. You can add classes to items using the markdown extra syntax `![alt_text](path_to_image){.CSS_class_name}`
+
+A number of classes are included in the CSS:
+
+- .aligncenter
+- .left (align left, width 48%)
+- .right (align right, width 48%)
+- .i50 (align center, width 50%)
+- .i60 (align center, width 60%)
+- .i75 (align center, width 75%)
+- .i80 (align center, width 80%)
+- .i90 (align center, width 90%)
+- .i100 (align center, width 100%)
+
+These classes can also be used in the webp markup above.
+
+**And that's it...**
+
+I think that's it.
+
+This is version 1.0 of hyblog, more a proof of concept than anything but updates and improvements will happen over time.
+
+**Roadmap**
+
+There is no specific roadmap for development but things I want to do are:
+
+- move post & comment files to a sub folder (this will require moving them on upgrade, I'll see if I can write the code to do it automatically)
+- make hyblog extensible by creating an easy way to make new pages just by typing the name and markdown contents into a form
