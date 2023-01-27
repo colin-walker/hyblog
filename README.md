@@ -82,6 +82,8 @@ The about page is empty by default and will initially display "Nothing here yet"
 
 When posts are added or updated the RSS feed is rebuilt automatically and saved as hyblog.xml in your path root. There is an option in 'Admin' to use the daily feed digest. When this is set you 'yes' the link for daily.xml is included on the /feeds page. You will need to create cron job or equivalent to run dailyfeed.php each night (just after midnight is best) to rebuild the daily feed. If you don't want to use the daily digest just leave the option as 'no' in Admin.
 
+Oh, the RSS feeds support rssCloud using Andy Sylvester's server at rpc.rsscloud.io.
+
 **Admin**
 
 While we're on the subject, the admin page also allows you to change your username, avatar image, site name, decsription, root URL, and email address. Leave the username blank when saving any changes to retain the one you chose at setup.
