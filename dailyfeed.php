@@ -31,10 +31,10 @@ fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotif
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
-$postfiles = glob($target_dir.'/*/*/*.md');
+$postfiles = glob($target_dir.'/*/*/*/*.md');
 foreach($postfiles as $postfile) {
-	if (substr(explode('/',$postfile)[6],0,1) != 'c') {
-		$filedates[] = substr(explode('/',$postfile)[6],0,10);
+	if (substr(explode('/',$postfile)[7],0,1) != 'c') {
+		$filedates[] = substr(explode('/',$postfile)[7],0,10);
 	}
 }
 
@@ -49,7 +49,7 @@ foreach($filedates as $file) {
 	$fullcontent = '';
 	$year = date('Y', strtotime($file));
 	$month = date('m', strtotime($file));
-	$posts = file_get_contents($target_dir.'/'.$year.'/'.$month.'/'.$file.'.md');
+	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$file.'.md');
 	
 	$explode = array_filter(explode('@@', $posts),'strlen');
     //$explode = array_reverse($explode);

@@ -23,11 +23,11 @@ $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
 $day = date('d', strtotime($date));
 
-if (!file_exists($target_dir.'/'.$year.'/'.$month.'/'.$date.'.md') && (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth)) {
-$files = glob($target_dir.'/*/*/*.md');
+if (!file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md') && (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth)) {
+$files = glob($target_dir.'/*/*/*/*.md');
 	foreach($files as $postfile) {
-		if (substr(explode('/',$postfile)[6],0,1) != 'c') {
-			$filedate[] = substr(explode('/',$postfile)[6],0,10);
+		if (substr(explode('/',$postfile)[7],0,1) != 'c') {
+			$filedate[] = substr(explode('/',$postfile)[7],0,10);
 		}
 	}
 	
@@ -100,8 +100,8 @@ if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 	echo '<div id="postwrapper">';
 }
 
-if (file_exists($target_dir.'/'.$year.'/'.$month.'/'.$date.'.md')) {		
-	$posts = file_get_contents($target_dir.'/'.$year.'/'.$month.'/'.$date.'.md');
+if (file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {		
+	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
 } else {
 	if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 ?>
@@ -148,7 +148,7 @@ if (isset($posts)) {
 			echo '<article id="p' . $p . '" class="h-entry hentry">' . PHP_EOL;
 			echo '<div class="section">';
 			
-			if ( file_exists( $target_dir.'/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {	$comments = file_get_contents($target_dir.'/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
+			if ( file_exists( $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {	$comments = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
 				$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
 				if (count($explode) > 0) {
 					$has ='has'; 
@@ -174,8 +174,8 @@ if (isset($posts)) {
 			echo '<h3>Comments</h3>';
 			echo '<div id="comment'.$p.'">';
 			
-			if ( file_exists( $target_dir.'/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {				
-				$comments = file_get_contents($target_dir.'/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
+			if ( file_exists( $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {				
+				$comments = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
 				$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
 				foreach ($explode as $i=>$comment) {
 					$parts = explode('<@>',$comment);
@@ -224,9 +224,9 @@ if (isset($posts)) {
 				$next_check = date('Y-m-d', strtotime($date .' +1 day'));
 				$match = false;
 				
-				foreach(glob($target_dir.'/*/*/*.md') as $file) {
-					if (substr(explode('/',$file)[6],0,1) != 'c') {
-						$filedate[] = substr(explode('/',$file)[6],0,10);
+				foreach(glob($target_dir.'/*/*/*/*.md') as $file) {
+					if (substr(explode('/',$file)[7],0,1) != 'c') {
+						$filedate[] = substr(explode('/',$file)[7],0,10);
 					}
 				}
 				

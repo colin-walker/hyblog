@@ -14,7 +14,7 @@ if (isset($_POST['date']) && isset($_POST['post'])) {
 	$website = $_POST['website'];
 	$comment = strip_tags($_POST['comment'],'<a><p><br><li><b><i><strong><em>');
 	
-	$file = $target_dir.'/'.$year.'/'.$month.'/comments'.$post.'-'.$date.'.md';
+	$file = $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$post.'-'.$date.'.md';
 
 	if ( file_exists( $file ) ) {
 		$existing = file_get_contents($file);

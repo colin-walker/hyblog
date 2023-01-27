@@ -27,7 +27,7 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 			$newcontent .= "\n\n!! ".date('H:i:s');
 		}
 		
-		$file = $target_dir.'/'.$year.'/'.$month.'/'.$date.'.md';
+		$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
 
 		if ( file_exists( $file ) ) {
 		  unlink( $file );

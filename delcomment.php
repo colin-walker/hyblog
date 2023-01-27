@@ -10,7 +10,7 @@ $post = $_GET['p'];
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
 
-$file = $target_dir.'/'.$year.'/'.$month.'/'.'comments'.$post.'-'.$date.'.md';
+$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.'comments'.$post.'-'.$date.'.md';
 $comments = file_get_contents($file);
 
 $explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
