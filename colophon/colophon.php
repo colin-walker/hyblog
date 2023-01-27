@@ -41,7 +41,7 @@ require_once('../config.php');
 						
 						Rather than having to build the site after each change, it uses dynamic files which write/pull posts and comments to/from .md files.
 						
-						Hyblog uses Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown) & [ParsedownExtra](https://github.com/erusev/parsedown-extra) libraries for Markdown.
+						Hyblog uses Emanuil Rusev's <a href="https://github.com/erusev/parsedown">Parsedown</a> & <a href="https://github.com/erusev/parsedown-extra">ParsedownExtra</a> libraries for Markdown.
 						
 						It's still in very early stages of development as is primarily an experiment to see what can be done.
 						<br/>
