@@ -6,6 +6,8 @@ The name is an amalgam of hybrid and blog. It is a different approach to databas
 
 Check out the demo site [here](https://colinwalker.me.uk).
 
+See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) for updates.
+
 ### Installation
 
 - copy all files and folders to your desired path - the repository includes example .htaccess files to get you going
@@ -28,11 +30,11 @@ Tap/click the burger menu button at the bottom and click the 'ⓗ' symbol to go 
 
 Hyblog operates on a daily basis. Each day is a separate entity and the post for that day will be listed as they are typed.
 
-When logged in, if there are no posts you will be presented with a simple form:
+When logged in, if there are no posts on that day you will be presented with a simple form:
 
 ![hyblog post form](https://colinwalker.me.uk/uploads/2023/01/postform.png)
 
-Just start typing in markdown and hit post when done. It's as easy as that to create your first post! If you want to edit it or post something else just double-click/double-tap anywhere in the content and you will be taken back to the post form.
+Just start typing in markdown and hit post when done. It's as easy as that to create your first post! If you want to edit it just double-click/double-tap anywhere in the content and you will be taken back to the post form.
 
 This is where you'll notice something a little different. The text you type will have had @@ added before it and !! with a time appended after it. These tell hyblog when to split the day's text between posts and when they were published. Here's an example:
 
@@ -56,7 +58,7 @@ This is a third post with a **title**.
 !! 22:12:36
 ```
 
-To start a new post just type @@ and you're off. The time will be added automatically when saving.
+To make subsequent posts just click the '+' n the top right and you're off. The post content, separator and time will be appended to the day's file automatically when saving.
 
 So, what else is going on here? Having a hash followed by a space on the first line of a post indicates that it has a title - titles are not mandatory. Also, Adding an exclamation point followed by a space at the start of a post will make it a draft which won't show on the page or in the RSS feed. When you're ready to make it live just delete the exclamation point.
 
