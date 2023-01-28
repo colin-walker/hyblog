@@ -131,6 +131,8 @@ A number of classes are included in the CSS:
 
 These classes can also be used in the webp markup above.
 
+If you want to make changes to the CSS edit style.css then run minify.php to update style_min.css
+
 **And that's it...**
 
 I think that's it.
