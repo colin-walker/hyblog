@@ -70,7 +70,19 @@ $files = glob($target_dir.'/*/*/*/*.md');
 		.replies {
 			height: auto;	
 		}
+		
+		@media screen and (min-width: 768px) {
+		    .nav-next a {
+		        padding-right: 25px;
+		    }
+		    .nav-previous a {
+		        padding-left: 25px;
+		    }
+		}
 	</style>
+	
+	<script src="script.js"></script>
+	
 </head>
 
 <body>
@@ -102,6 +114,27 @@ if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 
 if (file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {		
 	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
+	
+	if (!empty($posts) && isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
+?>
+	<a id="toggle" tabindex="1" class="toggle" onclick="toggleForm()" accesskey="e"><picture>
+        <source srcset="../images/add_dark.png" media="(prefers-color-scheme: dark)">
+        <img src="../images/add_light.png" />
+        </picture>
+    </a>
+    <a id="cancel" class="cancel" onclick="toggleForm()" accesskey="e"><img  loading="lazy" alt="cancel" src="../images/cancel.png" />
+    </a>
+    
+    <div id="editdiv" style="height: 0px; overflow: hidden;">
+    	<iframe id="upload_frame" scrolling="no" loading="lazy" src="uploader.php" style="display: inline;"></iframe>
+			<form name="form" method="post" action="addpost.php?date=<?php echo $date; ?>">
+			<textarea rows="10" id="content" name="content" class="text" placeholder="Write ..."></textarea>
+			<input type="submit" style ="float: right;" value="Post" />
+	</form>
+    </div>
+
+<?php
+	}
 } else {
 	if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 ?>
@@ -279,41 +312,7 @@ if (isset($posts)) {
 	    } );
 	</script>
 	
-	<script>
-		function toggleComments(ID) {
-	        var repliesdiv = 'replies' + ID;
-	        var replies = document.getElementById(repliesdiv);
-	        replies.style.transition = "all .5s";
-	        if (replies.style.display != "none") {
-	            replies.style.display = "none";
-	        } else {
-	            var repliesdivs = document.getElementsByClassName('replies');
-	            for (var i = 0; i < repliesdivs.length; i++) {
-	                repliesdivs[i].style.display = "none";
-	            }
-	            console.log(ID);
-	            replies.style.display = "block";
-	            replies.style.marginTop = "5px";
-	            replies.style.marginBottom = "30px";
-	            replies.style.padding = "0px 15px 0px";
-	            var name = 'name' + ID;
-	            var namefield = document.getElementById(name);
-	            namefield.setSelectionRange(0, 0);
-	            namefield.focus();
-	            replies.scrollIntoView();
-	        }
-	    }
-	</script>
-	<style>
-	@media screen and (min-width: 768px) {
-	    .nav-next a {
-	        padding-right: 25px;
-	    }
-	    .nav-previous a {
-	        padding-left: 25px;
-	    }
-	}
-	</style>
+
 <?php
 	$pageDesktop = "157";
 	$pageMobile = "207";

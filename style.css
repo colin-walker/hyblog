@@ -500,6 +500,16 @@ body.login {
   top: 0px;
 }
 
+#editdiv {
+	-moz-transition: height .5s;
+	-ms-transition: height .5s;
+	-o-transition: height .5s;
+	-webkit-transition: height .5s;
+	transition: height .5s;
+	height: 0px;
+	overflow: hidden;
+}
+
 /* Post body */
 
 .post_title {
