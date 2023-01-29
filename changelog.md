@@ -1,6 +1,15 @@
 # Changelog
 
-## 29th Jan**
+## 29th Jan 2023
+
+Another small change to more reliably insert new lines between posts when new posts are added to the day's .md file.
+
+Files Updated:
+
+- addpost.php
+- newpost.php
+
+## 29th Jan 2023
 
 Big update!
 
