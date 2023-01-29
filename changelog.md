@@ -2,6 +2,14 @@
 
 ## 29th Jan 2023
 
+Slight update to page template for formatting purposes.
+
+Files updated:
+
+- page.php 
+
+## 29th Jan 2023
+
 Security updates added to the new page management pages and for comment deletion.
 
 Files Updates:
