@@ -113,7 +113,7 @@ fwrite($rssfile, '</channel>'.PHP_EOL);
 fwrite($rssfile, '</rss>'.PHP_EOL);
 fclose($rssfile);
 
-$feedurl = $rss;
+$feedurl = BASE_URL.'daily.xml';
 
 doPing($feedurl);
 
