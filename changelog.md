@@ -11,12 +11,12 @@ Everything updated with better references to file locations (using `dirname(__FI
 Custom pages can be added, updated, deleted! In /admin there is now a link to 'Manage pages' at the top.
 
 - click 'Add a page' to go to a simple form with just 'Title' and 'Content' fields. Pages are saved as .me files in /pages/ – add your content in markdown and HTML
-- any existing pages will be listed as links to take you to am 'update' page
+- any existing pages will be listed as links to take you to an 'update' page
 - each existing page will have delete icon to the right
 
-A test page - test.md - is included.
+A test page - test.md - is included. (You can delete that.)
 
-New file page.php accepts a URL parameter ?p={page_name}, gets the file contents from the relevant file, and displays the page. The address in the browser history is then changed to a cleaner version using javascript - a page called 'test' will have the link https://{root_url}/test/ rather than https://{root_url}/page.php?p=test.
+New file page.php accepts a URL parameter ?p={page_name}, gets the file contents from the relevant file, and displays the page. The address in the browser history is then changed to a cleaner version using javascript - a page called 'test' will have the link http(s)://{root_url}/test/ rather than http(s)://{root_url}/page.php?p=test.
 
 As the page addresses don't actually exist the new 404 page checks if the URI matches one of the pages and redirects to /page.php?p=test
 
