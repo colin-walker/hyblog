@@ -1,6 +1,6 @@
 <?php
 
-$root = $_SERVER['DOCUMENT_ROOT'];
+$root = dirname(__FILE__);
 $css = $root . '/style.css';
 $min = $root . '/style_min.css';
 

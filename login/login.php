@@ -8,7 +8,7 @@ define('APP_RAN', '');
 // Include config file
 require_once('../config.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__DIR__);
 $file = $target_dir . '/session.php';
 
 if ( file_exists( $file ) ) {

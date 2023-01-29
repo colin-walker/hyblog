@@ -10,7 +10,7 @@ require_once('../content_filters.php');
 require_once('../Parsedown.php');
 require_once('../ParsedownExtra.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__DIR__);
 $auth = file_get_contents($target_dir . '/session.php');
 
 ?>

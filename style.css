@@ -698,6 +698,10 @@ video {
 	margin-block-end: 1.5em;
 }
 
+.page-content a {
+	color: var(--light-links);
+}
+
 
 /* Main form and controls */
 
@@ -1314,6 +1318,10 @@ object.avatar {
 
 	.pagetitle {
 		margin-bottom: 30px;
+	}
+	
+	.page-content a {
+		color: var(--dark-links);
 	}
 
 	.toggle, .dateSpan, .titleSpan, .titleSpan, .today-count, .leave_reply, .day-links a {

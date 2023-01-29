@@ -15,7 +15,7 @@ GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar;
 
 $uname = $hash = $sitename = $description = $url = $mailto = $avatar = '';
 
-$root = $_SERVER['DOCUMENT_ROOT'];
+$root = dirname(__DIR__);
 $auth = file_get_contents($root . '/session.php');
 
 $file = $root.'/setup.php';
@@ -189,6 +189,10 @@ GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar, $d
     ?> 
     
     <div class="adminwrapper" style="margin: 20px auto 10px; padding-top: 30px;">
+    	<p>
+    		<a href="../managepages.php"><b>Manage pages</b></a>
+    	</p>
+    	</br>
 		<form id="admin_form" method="post">
             <div>
             	<input type="hidden" name="update" value="true">

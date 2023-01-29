@@ -7,7 +7,7 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
 $date = $_GET['date'];
 $year = date('Y', strtotime($date));

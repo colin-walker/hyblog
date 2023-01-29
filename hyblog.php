@@ -13,8 +13,8 @@ require_once('content_filters.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-//$theme = 'alt';
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT']
+
 $auth = file_get_contents($target_dir . '/session.php');
 
 $today = date('Y-m-d');

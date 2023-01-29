@@ -2,7 +2,7 @@
 
 require_once('Parsedown.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT'];
 
 if (isset($_POST['date']) && isset($_POST['post'])) {
 	$date = $_POST['date'];

@@ -2,7 +2,7 @@
 
 require_once('config.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
 
 ?>
@@ -21,12 +21,27 @@ $auth = file_get_contents($target_dir . '/session.php');
 <div class="nameSpan" style="font-weight: bold;">
   <nav>
 	<a href="<?php echo BASE_URL; ?>" style="font-size: 1.2em;">Home</a><br/><br/>
-    <a href="<?php echo BASE_URL; ?>feeds/" title="Subscribe to RSS feeds">Feeds</a>
-    <br/>
+<?php
+$pages = $target_dir.'/pages/';
+
+foreach(glob($pages.'*.md') as $i=>$file) {
+	$pagename = rtrim(explode('/',$file)[5], '.md');
+	$link = str_replace('_', ' ', $pagename);
+	echo '<a href="'.BASE_URL.$pagename.'">'.$link.'</a>';
+	echo '</br>';
+}
+if (!empty($pagename)) {
+	echo '</br>';
+}
+?>
+    <a href="<?php echo BASE_URL; ?>feeds/" title="Subscribe to regular & daily RSS feeds">Feeds</a>
+    </br>
     <a href="<?php echo BASE_URL; ?>about/">ABOUT</a>
-    <br/>
+    </br>
     <a href="<?php echo BASE_URL; ?>colophon/">COLOPHON</a>
-    
+    </br>
+    </br>
+    <a href="https://colinwalker.blog/blog/">(b)log-In</a>
     
 <?php
     if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
@@ -40,7 +55,7 @@ $auth = file_get_contents($target_dir . '/session.php');
 <?php
     } else {
 ?>
-        <div style="text-transform: lowercase; font-size: 20px; position: absolute; bottom: 23px; left: 345px;"><a accesskey="l" href="login/">ⓗ</a></div>
+        <div style="text-transform: lowercase; font-size: 20px; position: absolute; bottom: 23px; left: 345px;"><a accesskey="l" href="<?php echo BASE_URL; ?>login/">ⓗ</a></div>
 <?php
     }
 ?>

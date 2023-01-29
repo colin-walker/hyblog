@@ -2,7 +2,7 @@
 
 require_once('Parsedown.php');
 
-$target_dir = $_SERVER['DOCUMENT_ROOT'];
+$target_dir = dirname(__FILE__);
 
 $comment = $_GET['c'];
 $date = $_GET['date'];

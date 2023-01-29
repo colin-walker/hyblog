@@ -7,7 +7,7 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$home_dir = $_SERVER['DOCUMENT_ROOT'];
+$home_dir = dirname(__FILE__);
 $auth = file_get_contents($home_dir . '/session.php');
 
 if (!isset($_SESSION['hauth']) || !$_SESSION['hauth'] == $auth) {
