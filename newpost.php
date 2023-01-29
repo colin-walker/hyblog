@@ -32,10 +32,8 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 		if ( file_exists( $file ) ) {
 		  unlink( $file );
 		}
-
-		$postfile = fopen($file, 'w');
-		fwrite($postfile, $newcontent);
-		fclose($postfile);
+		
+		file_put_contents($file, $newcontent);
 		
 		include('rss.php');
 		

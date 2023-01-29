@@ -17,7 +17,7 @@ $day = date('d', strtotime($date));
 if (isset($_POST['content']) && isset($_POST['content']) != '') {
 	if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 		$newcontent = $_POST['content'];
-		$newcontent = '@@ '.$newcontent;
+		$newcontent = "\r\n\r\n@@ ".$newcontent;
 		$newcontent .= "\r\n\r\n!! ".date('H:i:s');
 	}
 	
