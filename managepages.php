@@ -7,7 +7,15 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = dirname(__FILE__).'/pages/';
+$root = dirname(__FILE__);
+$auth = file_get_contents($root . '/session.php');
+
+if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
+  header("location: " . BASE_URL );
+  exit;
+}
+
+$target_dir = $root.'/pages/';
 
 if (isset($_POST['title'])) {
 	$title = $_POST['title'];

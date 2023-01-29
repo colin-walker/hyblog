@@ -3,6 +3,12 @@
 require_once('Parsedown.php');
 
 $target_dir = dirname(__FILE__);
+$auth = file_get_contents($target_dir . '/session.php');
+
+if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
+  header("location: " . BASE_URL );
+  exit;
+}
 
 $comment = $_GET['c'];
 $date = $_GET['date'];
