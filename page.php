@@ -58,10 +58,13 @@ $content = $Parsedown->text($content);
 	        </header>
 	        <div id="primary" class="content-area">
 				<main id="main" class="site-main today-container">
+					<article>
+						<div class="entry-content e-content page-content about-content" style="padding-bottom: 60px;">
 				
 <?php
 	echo $content;		
-?>			
+?>						</div>
+					</article>
 				</main>
 			</div>
 <?php
