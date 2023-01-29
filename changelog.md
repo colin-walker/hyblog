@@ -2,6 +2,17 @@
 
 ## 29th Jan 2023
 
+Security updates added to the new page management pages and for comment deletion.
+
+Files Updates:
+
+- addpage.php
+- delcomment.php
+- delpage.php
+- managepages.php
+
+## 29th Jan 2023
+
 Another small change to more reliably insert new lines between posts when added to the day's .md file.
 
 Files Updated:
