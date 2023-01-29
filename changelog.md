@@ -10,7 +10,7 @@ Everything updated with better references to file locations (using `dirname(__FI
 
 Custom pages can be added, updated, deleted! In /admin there is now a link to 'Manage pages' at the top.
 
-- click 'Add a page' to go to a simple form with just 'Title' and 'Content' fields. Pages are saved as .me files in /pages/ – add your content in markdown and HTML
+- click 'Add a page' to go to a simple form with just 'Title' and 'Content' fields. Pages are saved as .md files in /pages/ – add your content in markdown and HTML
 - any existing pages will be listed as links to take you to an 'update' page
 - each existing page will have delete icon to the right
 
