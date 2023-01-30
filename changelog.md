@@ -1,5 +1,9 @@
 # Changelog
 
+## 30th Jan 2023
+
+Added option to set the site sub title to /admin. It will set to '(hybrid blog)' by default.
+
 ## 29th Jan 2023
 
 Slight update to page template for formatting purposes.
