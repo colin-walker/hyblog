@@ -9,11 +9,13 @@ require_once('config.php');
 
 $target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
-$date = $_GET['date'];
-$year = date('Y', strtotime($date));
-$month = date('m', strtotime($date));
-$day = date('d', strtotime($date));
-$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
+if (isset($_GET['date'])) {
+	$date = $_GET['date'];
+	$year = date('Y', strtotime($date));
+	$month = date('m', strtotime($date));
+	$day = date('d', strtotime($date));
+	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
+}
 
 // update posts
 
