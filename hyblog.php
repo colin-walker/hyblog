@@ -95,7 +95,7 @@ $files = glob($target_dir.'/*/*/*/*.md');
 	                        <span class="p-name">hyblog</span>
 	                    </a>
 	                </h1>
-	                (hybrid blog)
+	                <?php echo SUBTITLE;?>
 	            </div>
 	        </header>
 	        <div id="primary" class="content-area">

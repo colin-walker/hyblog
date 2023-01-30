@@ -11,9 +11,9 @@ define('APP_RAN', '');
 // Include config file
 require_once('../config.php');
 
-GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar;
+GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar;
 
-$uname = $hash = $sitename = $description = $url = $mailto = $avatar = '';
+$uname = $hash = $sitename = $subtitle = $description = $url = $mailto = $avatar = '';
 
 $root = dirname(__DIR__);
 $auth = file_get_contents($root . '/session.php');
@@ -33,6 +33,7 @@ if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
 $uname = UNAME;
 $hash = HASH;
 $sitename = NAME;
+$subtitle = SUBTITLE;
 $description = DESCRIPTION;
 $url = BASE_URL;
 $mailto	= MAILTO;
@@ -49,6 +50,11 @@ if (isset($_POST['update']) == 'true') {
 	if ($sitename != $_POST['sitename']) {
 		$sitename = $_POST['sitename'];
 		$changeStr .= 'Site name changed.<br/>';
+	}
+	
+	if ($subtitle != $_POST['subtitle']) {
+		$subtitle = $_POST['subtitle'];
+		$changeStr .= 'Sub title changed.<br/>';
 	}
 	
 	if ($description != $_POST['description']) {
@@ -94,7 +100,7 @@ if ( isset($_POST['passcheck']) == 'true' ) {
 }
 
 function changeConfig() {
-GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar, $dailyfeed;
+	GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $dailyfeed;
 	$config = $root.'/config.php';
 		if ( file_exists( $config ) ) {
     	unlink( $config );
@@ -111,6 +117,7 @@ GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar, $d
 	fwrite($createfile,''.PHP_EOL);
 	
 	fwrite($createfile,'define("NAME", "' . $sitename . '");'.PHP_EOL);
+	fwrite($createfile,'define("SUBTITLE", "' . $subtitle . '");'.PHP_EOL);
 	fwrite($createfile,'define("DESCRIPTION", "' . $description . '");'.PHP_EOL);
 	fwrite($createfile,'define("BASE_URL", "' . $url . '");'.PHP_EOL);
 	fwrite($createfile,'define("MAILTO", "' . $mailto . '");'.PHP_EOL);
@@ -202,6 +209,8 @@ GLOBAL $root, $uname, $hash, $sitename, $description, $url, $mailto, $avatar, $d
  				<input type="url" name="avatar" class="form-control" value="<?php echo AVATAR; ?>">
             	<label>Site name</label>
  				<input type="text" id="sitename" name="sitename" class="form-control" value="<?php echo NAME; ?>">
+            	<label>Sub title</label>
+ 				<input type="text" id="subtitle" name="subtitle" class="form-control" value="<?php echo SUBTITLE; ?>">
             	<label>Description</label>
  				<textarea rows="3" name="description" class="form-control" style="height: 42px;"><?php echo DESCRIPTION; ?></textarea>
             	<label>URL</label>

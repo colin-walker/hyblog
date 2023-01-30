@@ -39,6 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	fwrite($createfile,''.PHP_EOL);
 	
 	fwrite($createfile,'define("NAME", "' . $sitename . '");'.PHP_EOL);
+	fwrite($createfile,'define("SUBTITLE", "(hybrid blog)");'.PHP_EOL);
 	fwrite($createfile,'define("DESCRIPTION", "' . $description . '");'.PHP_EOL);
 	fwrite($createfile,'define("BASE_URL", "' . $url . '");'.PHP_EOL);
 	fwrite($createfile,'define("MAILTO", "' . $email . '");'.PHP_EOL);
