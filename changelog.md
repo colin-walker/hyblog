@@ -1,5 +1,32 @@
 # Changelog
 
+## 31st Jan 2023
+
+Added ['now' namespace](https://github.com/colin-walker/Now-Namespace) support.
+
+After one or more custom pages have been created a new option will appear in admin: "Now namespace page". This will let you select from the available custom pages.
+
+The content of the chosen page will then be added to the RSS feed as the `<now:content>` update.
+
+- `<now:title>` will be the page title
+- `<now:link>` will be the link to the update page
+- `<now:timestamp>` will be the last modified date of the page's .md file
+
+A supporting reader can then get the update information alongside posts.
+
+Files added:
+
+- updatepage.php
+- /admin/reset.html
+
+Files Updated:
+
+- managepages.php
+- page.php
+- rss.php
+- setup.php
+- /admin/admin.php
+
 ## 30th Jan 2023
 
 Added option to set the site sub title to /admin. It will set to '(hybrid blog)' by default.
