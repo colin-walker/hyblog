@@ -8,12 +8,15 @@ session_start();
 
 define('APP_RAN', '');
 
+$uname = $hash = $sitename = $subtitle = $description = $url = $mailto = $avatar = $nowns = '';
+
 // Include config file
-require_once('../config.php');
+clearstatcache();
+header('Cache-Control: no-cache');
+header('Pragma: no-cache');
+require('../config.php');
 
-GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar;
-
-$uname = $hash = $sitename = $subtitle = $description = $url = $mailto = $avatar = '';
+GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $nowns;
 
 $root = dirname(__DIR__);
 $auth = file_get_contents($root . '/session.php');
@@ -39,6 +42,8 @@ $url = BASE_URL;
 $mailto	= MAILTO;
 $avatar = AVATAR;
 $dailyfeed = DAILYFEED;
+$nowns = NOWNS;
+
 	
 if (isset($_POST['update']) == 'true') {
 	if ($uname != password_verify($_POST['username'], UNAME) && $_POST['username'] != '') {
@@ -82,6 +87,11 @@ if (isset($_POST['update']) == 'true') {
 		$changeStr .= 'Daily feed status changed.<br/>';
 	}
 	
+	if ($nowns != $_POST['nowns']) {
+		$nowns = $_POST['nowns'];
+		$changeStr .= 'Now namespace page changed.<br/>';
+	}
+	
 	if (substr($url,-1) != '/') {
 		$url.='/';	
 	}
@@ -100,7 +110,7 @@ if ( isset($_POST['passcheck']) == 'true' ) {
 }
 
 function changeConfig() {
-	GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $dailyfeed;
+	GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $dailyfeed, $nowns;
 	$config = $root.'/config.php';
 		if ( file_exists( $config ) ) {
     	unlink( $config );
@@ -123,9 +133,11 @@ function changeConfig() {
 	fwrite($createfile,'define("MAILTO", "' . $mailto . '");'.PHP_EOL);
 	fwrite($createfile,'define("AVATAR", "' . $avatar . '");'.PHP_EOL);
 	fwrite($createfile,'define("DAILYFEED", "' . $dailyfeed . '");'.PHP_EOL);
+	fwrite($createfile,'define("NOWNS", "' . $nowns . '");'.PHP_EOL);
 		
 	fwrite($createfile,'?>');	
-	fclose($createfile);
+	fclose($createfile);	
+	gc_collect_cycles();
 }
 
 ?>
@@ -188,11 +200,11 @@ function changeConfig() {
                     <?php echo $changeStr; ?>
                 </p>
                 <br/>
-                <a href="<?php echo BASE_URL; ?>admin/"><strong>More changes?</strong></a>
+                <a href="<?php echo BASE_URL; ?>admin/reset.html"><strong>More changes?</strong></a>
             </div>
         </div>
     <?php
-    } else {
+    } else {    	
     ?> 
     
     <div class="adminwrapper" style="margin: 20px auto 10px; padding-top: 30px;">
@@ -222,6 +234,23 @@ function changeConfig() {
  				  <option value="no"<?php if(DAILYFEED == 'no') { echo 'selected'; } ?>>no</option>
  				  <option value="yes" <?php if(DAILYFEED == 'yes') { echo 'selected'; } ?>>yes</option>
  				</select>
+ 				
+<?php
+				$pages = $root.'/pages/';
+				
+				if(!empty(glob($pages.'*.md'))) {
+					$nowns = NOWNS;
+					echo '<label>Now namespace page</label>'.PHP_EOL;
+					echo '<select name="nowns" class="form-control" style="width: 100%;">'.PHP_EOL;
+					foreach(glob($pages.'*.md') as $i=>$file) {
+						$pagename = rtrim(explode('/',$file)[5], '.md');
+						echo '<option value="'.$pagename.'"';
+						if($nowns == $pagename) { echo 'selected'; };
+						echo '>'.$pagename.'</option>'.PHP_EOL;
+			 		}
+			 		echo '</select>'.PHP_EOL;
+				}
+?>
  				<div style="text-align: right; margin-top: 12px; padding-right: 1px;"><input type="submit" value="Update" style="font-size: 14px; font-weight: bold;"></div>
             </div>
         </form>

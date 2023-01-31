@@ -45,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	fwrite($createfile,'define("MAILTO", "' . $email . '");'.PHP_EOL);
 	fwrite($createfile,'define("AVATAR", "' . $avatar . '");'.PHP_EOL);
 	fwrite($createfile,'define("DAILYFEED", "no");'.PHP_EOL);
+	fwrite($createfile,'define("NOWNS", "");'.PHP_EOL);
 		
 	fwrite($createfile,'?>');	
 	fclose($createfile);

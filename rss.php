@@ -22,7 +22,8 @@ if ( file_exists( $rss ) ) {
 $rssfile = fopen($rss, 'w');
 
 fwrite($rssfile, '<?xml version="1.0" standalone="yes" ?>'.PHP_EOL);
-fwrite($rssfile, '<rss xmlns:source="http://source.scripting.com/" version="2.0"'.PHP_EOL);
+fwrite($rssfile, '<rss xmlns:source="http://source.scripting.com/"'.PHP_EOL);
+fwrite($rssfile, 'xmlns:now="https://colinwalker.blog/now_namespace/" version="2.0"'.PHP_EOL);
 fwrite($rssfile, '>'.PHP_EOL);
 fwrite($rssfile, '<channel>'.PHP_EOL);
 fwrite($rssfile, '<title>hyblog</title>'.PHP_EOL);
@@ -33,6 +34,20 @@ fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotif
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<source:account service="hyblog">Colin Walker</source:account>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
+
+if (NOWNS != '') {
+	$nowns = $target_dir.'/pages/'.NOWNS.'.md';
+	$title = ucfirst(str_replace('_', ' ', NOWNS));
+	$content = file_get_contents($nowns);
+	$Parsedown = new Parsedown();
+	$content = $Parsedown->text($content);
+	$time = date("r", filemtime($nowns));
+	
+	fwrite($rssfile, '<now:title>'.$title.'</now:title>'.PHP_EOL);
+	fwrite($rssfile, '<now:link>'.BASE_URL.NOWNS.'/</now:link>'.PHP_EOL);
+	fwrite($rssfile, '<now:content><![CDATA['.$content.']]></now:content>'.PHP_EOL);
+	fwrite($rssfile, '<now:timestamp>'.$time.'</now:timestamp>'.PHP_EOL);
+}
 
 $postfiles = glob($target_dir.'/*/*/*/*.md');
 foreach($postfiles as $postfile) {

@@ -10,6 +10,7 @@ require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
 $target_dir = dirname(__FILE__);
+$auth = file_get_contents($target_dir . '/session.php');
 
 $page = $_GET['p'];
 $title = str_replace('_', ' ', ucfirst($page));
@@ -62,11 +63,24 @@ $content = $Parsedown->text($content);
 						<div class="entry-content e-content page-content about-content" style="padding-bottom: 60px;">
 				
 <?php
-	echo $content;		
-?>						</div>
+	if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {	
+?>
+							<div hx-target="this" hx-trigger="dblclick" hx-get="<?php echo BASE_URL; ?>updatepage.php?p=<?php echo $page; ?>">
+<?php
+	} else {
+?>
+							<div>
+<?php
+	}
+	echo $content;
+?>
+							</div>
+						</div>
 					</article>
 				</main>
 			</div>
+			
+			<script src="../htmx.min.js"></script>
 <?php
 	$pageDesktop = "157";
 	$pageMobile = "207";

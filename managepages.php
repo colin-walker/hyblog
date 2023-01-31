@@ -19,10 +19,24 @@ $target_dir = $root.'/pages/';
 
 if (isset($_POST['title'])) {
 	$title = $_POST['title'];
+	$name = $_POST['name'];
 	$title = strtolower(str_replace(' ', '_', $title));
+	$name = strtolower(str_replace(' ', '_', $name));
+	if ($title !== $name) {
+		$name = strtolower(str_replace(' ', '_', $name));
+		$old_file = $target_dir.$name.'.md';
+		unlink($old_file);
+	}
 	$content = $_POST['content'];
 	$file = $target_dir.$title.'.md';
 	file_put_contents($file, $content);
+	
+	if ($name == NOWNS) {
+		include('rss.php');
+	}
+	
+	header("location: " . BASE_URL . '/managepages.php' );
+  	exit;
 }
 
 ?>
@@ -63,6 +77,7 @@ if (isset($_GET['p'])) {
 ?>
 						<form name="form" method="post" action="managepages.php">
 							<input type="hidden" name="updatepage" value="updatepage">
+							<input type="hidden" name="name" value="<?php echo $title; ?>">
 							<input type="text" name="title" class="form-control" value="<?php echo $title; ?>" required>
 							<textarea name="content" rows="10" class="form-control" style="height: 300px; font-family: sans-serif" required><?php echo $content; ?></textarea>
 							<div style="width: 93%; margin: 0px auto;">
