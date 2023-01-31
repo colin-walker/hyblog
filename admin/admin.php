@@ -12,14 +12,13 @@ $uname = $hash = $sitename = $subtitle = $description = $url = $mailto = $avatar
 
 // Include config file
 clearstatcache();
-header('Cache-Control: no-cache');
-header('Pragma: no-cache');
 require('../config.php');
 
 GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $nowns;
 
 $root = dirname(__DIR__);
 $auth = file_get_contents($root . '/session.php');
+$pages = $root.'/pages/';
 
 $file = $root.'/setup.php';
 if ( file_exists( $file ) ) {
@@ -43,6 +42,11 @@ $mailto	= MAILTO;
 $avatar = AVATAR;
 $dailyfeed = DAILYFEED;
 $nowns = NOWNS;
+
+if(empty(glob($pages.'*.md'))) {
+	$nowns = '';
+	changeConfig($nowns);
+}
 
 	
 if (isset($_POST['update']) == 'true') {
@@ -90,6 +94,12 @@ if (isset($_POST['update']) == 'true') {
 	if ($nowns != $_POST['nowns']) {
 		$nowns = $_POST['nowns'];
 		$changeStr .= 'Now namespace page changed.<br/>';
+		if ($nowns != '') {
+			GLOBAL $rss;
+			$rss = $nowns;
+		} else {
+			$rss = 'clear';
+		}
 	}
 	
 	if (substr($url,-1) != '/') {
@@ -97,7 +107,7 @@ if (isset($_POST['update']) == 'true') {
 	}
 	
 	if ($changeStr != '') {
-		changeConfig();
+		changeConfig($rss);
 	}
 }
 
@@ -109,8 +119,8 @@ if ( isset($_POST['passcheck']) == 'true' ) {
 	}
 }
 
-function changeConfig() {
-	GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $dailyfeed, $nowns;
+function changeConfig($rebuild = null) {
+	GLOBAL $root, $uname, $hash, $sitename, $subtitle, $description, $url, $mailto, $avatar, $dailyfeed, $nowns, $rss;
 	$config = $root.'/config.php';
 		if ( file_exists( $config ) ) {
     	unlink( $config );
@@ -138,6 +148,12 @@ function changeConfig() {
 	fwrite($createfile,'?>');	
 	fclose($createfile);	
 	gc_collect_cycles();
+	
+	if (!empty($rebuild) && $rebuild != 'clear') {
+		header("Location: ../rss.php?p=".$rebuild);
+	} elseif ($rebuild == 'clear') {
+		header("Location: ../rss.php?p=clearnow");
+	}
 }
 
 ?>
@@ -242,6 +258,9 @@ function changeConfig() {
 					$nowns = NOWNS;
 					echo '<label>Now namespace page</label>'.PHP_EOL;
 					echo '<select name="nowns" class="form-control" style="width: 100%;">'.PHP_EOL;
+					if(count(glob($pages.'*.md'))) {
+						echo '<option value=""></option>'.PHP_EOL;
+					}
 					foreach(glob($pages.'*.md') as $i=>$file) {
 						$pagename = rtrim(explode('/',$file)[5], '.md');
 						echo '<option value="'.$pagename.'"';

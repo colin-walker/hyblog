@@ -3,8 +3,9 @@
 // Initialise session
 session_start();
 
-if(null === APP_RAN) {
+if(defined('APP_RAN') === false) {
 	define('APP_RAN', '');
+	require_once('config.php');
 }
 
 require_once('content_filters.php');
@@ -35,16 +36,17 @@ fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<source:account service="hyblog">Colin Walker</source:account>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
-if (NOWNS != '') {
-	$nowns = $target_dir.'/pages/'.NOWNS.'.md';
-	$title = ucfirst(str_replace('_', ' ', NOWNS));
+if (!isset($_GET['p']) || (isset($_GET['p'])&& $_GET['p'] != 'clearnow')) {
+	NOWNS == '' ? $nownsname = $_GET['p'] : $nownsname = NOWNS;
+	$nowns = $target_dir.'/pages/'.$nownsname.'.md';
+	$title = ucfirst(str_replace('_', ' ', $nownsname));
 	$content = file_get_contents($nowns);
 	$Parsedown = new Parsedown();
 	$content = $Parsedown->text($content);
 	$time = date("r", filemtime($nowns));
 	
 	fwrite($rssfile, '<now:title>'.$title.'</now:title>'.PHP_EOL);
-	fwrite($rssfile, '<now:link>'.BASE_URL.NOWNS.'/</now:link>'.PHP_EOL);
+	fwrite($rssfile, '<now:link>'.BASE_URL.$nownsname.'/</now:link>'.PHP_EOL);
 	fwrite($rssfile, '<now:content><![CDATA['.$content.']]></now:content>'.PHP_EOL);
 	fwrite($rssfile, '<now:timestamp>'.$time.'</now:timestamp>'.PHP_EOL);
 }
@@ -123,5 +125,9 @@ fclose($rssfile);
 $feedurl = BASE_URL.'hyblog.xml';
 
 doPing($feedurl);
+
+if (isset($_GET['p'])) {
+	header("Location: admin/reset.html");
+}
 
 ?>
