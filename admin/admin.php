@@ -249,6 +249,8 @@ function changeConfig() {
 						echo '>'.$pagename.'</option>'.PHP_EOL;
 			 		}
 			 		echo '</select>'.PHP_EOL;
+				} else {
+					echo '<input type="hidden" name="nowns" value="">';	
 				}
 ?>
  				<div style="text-align: right; margin-top: 12px; padding-right: 1px;"><input type="submit" value="Update" style="font-size: 14px; font-weight: bold;"></div>
