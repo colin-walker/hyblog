@@ -27,6 +27,13 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 			$newcontent .= "\n\n!! ".date('H:i:s');
 		}
 		
+		if(!file_exists('posts/'.$year)) {
+		    mkdir('posts/'.$year);
+		}
+	    if(!file_exists('posts/'.$year.'/'.$month)) {
+	    	mkdir('posts/'.$year.'/'.$month);
+	    }
+		
 		$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
 
 		if ( file_exists( $file ) ) {
