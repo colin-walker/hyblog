@@ -34,8 +34,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	fwrite($createfile,'if(!defined("APP_RAN")){ die(); }'.PHP_EOL);
 	fwrite($createfile,''.PHP_EOL);
 	
-	fwrite($createfile,'define("UNAME", "' . $uname . '");'.PHP_EOL);
-	fwrite($createfile,'define("HASH", "' . $passhash . '");'.PHP_EOL);
+	fwrite($createfile,'define("UNAME", \'' . $uname . '\');'.PHP_EOL);
+	fwrite($createfile,'define("HASH", \'' . $passhash . '\');'.PHP_EOL);
 	fwrite($createfile,''.PHP_EOL);
 	
 	fwrite($createfile,'define("NAME", "' . $sitename . '");'.PHP_EOL);
