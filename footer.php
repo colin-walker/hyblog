@@ -39,9 +39,6 @@ if (!empty($pagename)) {
     <a href="<?php echo BASE_URL; ?>about/">ABOUT</a>
     </br>
     <a href="<?php echo BASE_URL; ?>colophon/">COLOPHON</a>
-    </br>
-    </br>
-    <a href="https://colinwalker.blog/blog/">(b)log-In</a>
     
 <?php
     if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
