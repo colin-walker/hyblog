@@ -1,14 +1,12 @@
 <?php
 
+// Initialise session
+session_start();
+
 require_once('Parsedown.php');
 
 $target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
-
-if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
-  header("location: " . BASE_URL );
-  exit;
-}
 
 $comment = $_GET['c'];
 $date = $_GET['date'];
@@ -16,32 +14,45 @@ $post = $_GET['p'];
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
 
+echo '<h3>Comments</h3>';
+echo '<div id="comment'.$post.'">';
+echo '<br>';
+
 $file = $target_dir.'/posts/'.$year.'/'.$month.'/'.'comments'.$post.'-'.$date.'.md';
-$comments = file_get_contents($file);
 
-$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
-
-unset($explode[$comment]);
-
-if ( file_exists( $file ) ) {
-	unlink( $file );
-}
+if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
+	$comments = file_get_contents($file);
 	
-$commentfile = fopen($file, 'w');
-foreach($explode as $comment) {
-	fwrite($commentfile, "@@\n");
-	fwrite($commentfile, $comment."\n");
+	$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
+	
+	unset($explode[$comment]);
+	
+	if ( file_exists( $file ) ) {
+		unlink( $file );
+	}
+		
+	$commentfile = fopen($file, 'w');
+	foreach($explode as $comment) {
+		fwrite($commentfile, "@@\n");
+		fwrite($commentfile, $comment."\n");
+	}
+	fclose($commentfile);
+
 }
-fclose($commentfile);
 			
 $comments = file_get_contents($file);
 $explode = array_filter(explode('@@', $comments),'strlen');
-foreach ($explode as $comment) {
-	$parts = explode('@!@',$comment);
-	echo '<div style="text-indent: 20px; margin-bottom: -10px;"><b>'.$parts[0].'</b> says:</div>';
+foreach ($explode as $i=>$comment) {
+	$parts = explode('<@>',$comment);
+	if ($parts[1] == '') {
+		echo '<div style="text-indent: 20px; margin-bottom: -10px;"><b>'.$parts[0].'</b> says:</div>';
+	} else {
+		echo '<div style="text-indent: 20px; margin-bottom: -10px;"><a class="website_link" href="'.$parts[1].'"><b>'.$parts[0].'</b></a> says:</div>';
+	}
+	
 	$Parsedown = new Parsedown();
-	$parts[1] = $Parsedown->text($parts[1]);
-	echo '<div style="text-indent: 20px; margin-bottom: 25px;">'.$parts[1].'</div>';
+	$parts[2] = $Parsedown->text($parts[2]);
+	echo '<div style="text-indent: 20px; margin-bottom: 25px;">'.$parts[2].'</div>';
 }
 
 echo '<form id="form'.$post.'" hx-target="#comment'.$post.'" hx-post="comment.php">';
