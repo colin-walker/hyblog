@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="email" name="email" class="form-control" value="" required>
                 <label>Avatar</label>
                 <input type="url" name="avatar" class="form-control" value="">
-                <label>Date format</label>
+                <label>Date format *</label>
  				<select name="format" class="form-control" style="width: 100%;">
  				  <option value="d/m/Y">dd/mm/yyyy</option>
  				  <option value="m/d/Y">mm/dd/yyyy</option>
