@@ -62,10 +62,9 @@ $files = glob($target_dir.'/*/*/*/*.md');
   	<link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
 	<link rel="stylesheet" href="<?php echo BASE_URL; ?>bigfoot/bigfoot-bottom.css" type="text/css" media="all">
 	<link rel="stylesheet" href="style_min.css" type="text/css" media="all">
-    <link rel="home alternate" type="application/rss+xml" title="hyblog feed" href="<?php echo BASE_URL; ?>hyblog.xml">
-    <link rel="canonical" href="<?php echo BASE_URL; ?>">
-    <link rel="me" href="mailto:<?php echo MAILTO; ?>">
-	<link rel="me" href="https://github.com/colin-walker">
+    	<link rel="home alternate" type="application/rss+xml" title="<?php echo NAME; ?> feed" href="<?php echo BASE_URL; ?>hyblog.xml">
+    	<link rel="canonical" href="<?php echo BASE_URL; ?>">
+    	<link rel="me" href="mailto:<?php echo MAILTO; ?>">
 	<style>
 		.replies {
 			height: auto;	
@@ -102,7 +101,7 @@ $files = glob($target_dir.'/*/*/*/*.md');
 				<main id="main" class="site-main today-container">
 
 					<h2><span class="dateSpan">
-					<?php echo ($today == $date) ? 'Today' : date('d/m/Y', strtotime($date)); ?>
+					<?php echo ($today == $date) ? 'Today' : date(DATEFORMAT, strtotime($date)); ?>
 					</span></h2>
 <?php					
 
