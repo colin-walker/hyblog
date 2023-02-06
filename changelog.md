@@ -2,6 +2,15 @@
 
 ## 6th Feb 2023
 
+New feature: choose date format in setup (choices are dd/mm/yyyy & mm/dd/yyyy)
+
+Files updated:
+
+- setup.php
+- hyblog.php
+
+## 6th Feb 2023
+
 Fixed bug with comments not deleting. It _used_ to work so I obviously made a change but didn't do proper regression testing.
 
 Files updated:
