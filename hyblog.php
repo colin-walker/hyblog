@@ -92,7 +92,7 @@ $files = glob($target_dir.'/*/*/*/*.md');
 	            <div class="site-branding">
 	                <h1 class="site-title">
 	                    <a href="<?php echo BASE_URL; ?>" rel="home">
-	                        <span class="p-name">hyblog</span>
+	                        <span class="p-name"><?php echo NAME;?></span>
 	                    </a>
 	                </h1>
 	                <?php echo SUBTITLE;?>

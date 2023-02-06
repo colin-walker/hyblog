@@ -24,11 +24,11 @@ $rssfile = fopen($rss, 'w');
 
 fwrite($rssfile, '<?xml version="1.0" standalone="yes" ?>'.PHP_EOL);
 fwrite($rssfile, '<rss xmlns:source="http://source.scripting.com/"'.PHP_EOL);
-fwrite($rssfile, 'xmlns:now="https://colinwalker.blog/now_namespace/" version="2.0"'.PHP_EOL);
+fwrite($rssfile, 'xmlns:now="https://nowns.work" version="2.0"'.PHP_EOL);
 fwrite($rssfile, '>'.PHP_EOL);
 fwrite($rssfile, '<channel>'.PHP_EOL);
-fwrite($rssfile, '<title>hyblog</title>'.PHP_EOL);
-fwrite($rssfile, '<description>Posts from hyblog</description>'.PHP_EOL);
+fwrite($rssfile, '<title><?php echo NAME;?></title>'.PHP_EOL);
+fwrite($rssfile, '<description>Posts from <?php echo NAME;?></description>'.PHP_EOL);
 fwrite($rssfile, '<link>'.BASE_URL.'</link>'.PHP_EOL);
 fwrite($rssfile, '<lastBuildDate>' . gmdate('D, d M Y H:i:s') . ' GMT</lastBuildDate>'.PHP_EOL);
 fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>'.PHP_EOL);
