@@ -1,5 +1,13 @@
 # Changelog
 
+## 6th Feb 2023
+
+Fixed bug with comments not deleting. It _used_ to work so I obviously made a change but didn't do proper regression testing.
+
+Files updated:
+
+- delcomment.php
+
 ## 31st Jan 2023
 
 Added ['now' namespace](https://github.com/colin-walker/Now-Namespace) support.
