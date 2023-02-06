@@ -11,7 +11,9 @@ if (isset($_POST['date']) && isset($_POST['post'])) {
 	$day = date('d', strtotime($date));
 	$post = $_POST['post'];
 	$name = $_POST['name'];
-	$website = $_POST['website'];
+	if (isset($_POST['website'])) {
+		$website = $_POST['website'];
+	}
 	$comment = strip_tags($_POST['comment'],'<a><p><br><li><b><i><strong><em>');
 	
 	$file = $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$post.'-'.$date.'.md';

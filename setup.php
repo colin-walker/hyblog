@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$password = trim($_POST['password']);
 	$email = trim($_POST['email']);
 	$avatar = trim($_POST['avatar']);
+	$format = trim($_POST['format']);
 	
 	$uname = password_hash($login, PASSWORD_DEFAULT);
 	$passhash = password_hash($password, PASSWORD_DEFAULT);
@@ -46,6 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	fwrite($createfile,'define("AVATAR", "' . $avatar . '");'.PHP_EOL);
 	fwrite($createfile,'define("DAILYFEED", "no");'.PHP_EOL);
 	fwrite($createfile,'define("NOWNS", "");'.PHP_EOL);
+	fwrite($createfile,'define("DATEFORMAT", "' . $format . '");'.PHP_EOL);
 		
 	fwrite($createfile,'?>');	
 	fclose($createfile);
@@ -101,6 +103,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="email" name="email" class="form-control" value="" required>
                 <label>Avatar</label>
                 <input type="url" name="avatar" class="form-control" value="">
+                <label>Date format</label>
+ 				<select name="format" class="form-control" style="width: 100%;">
+ 				  <option value="d/m/Y">dd/mm/yyyy</option>
+ 				  <option value="m/d/Y">mm/dd/yyyy</option>
+ 				</select>
                 <div style="float: left; font-size: 13px;">* required</div>
                 <div style="text-align: right; padding-right: 3px;"><input type="submit" value="Setup" style="font-size: 14px; font-weight: bold;"></div>
             </div>
