@@ -33,7 +33,7 @@ fwrite($rssfile, '<link>'.BASE_URL.'</link>'.PHP_EOL);
 fwrite($rssfile, '<lastBuildDate>' . gmdate('D, d M Y H:i:s') . ' GMT</lastBuildDate>'.PHP_EOL);
 fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>'.PHP_EOL);
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
-fwrite($rssfile, '<source:account service="hyblog">Colin Walker</source:account>'.PHP_EOL);
+fwrite($rssfile, '<source:account service="hyblog"><?php echo NAME;?></source:account>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
 if (!isset($_GET['p']) || (isset($_GET['p'])&& $_GET['p'] != 'clearnow')) {
