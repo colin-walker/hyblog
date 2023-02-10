@@ -57,6 +57,8 @@ foreach($filedates as $file) {
 	$post_title = $h2 = '';
 	foreach ($explode as $i=>$post) {
 		$draft = false;
+		$title_in_body = false;
+		$post_title = '';
 		$content = trim($post);
 		$post_array = explode("\n", $content);
 	    $size = sizeof($post_array);
@@ -67,7 +69,7 @@ foreach($filedates as $file) {
 			$length = strlen($post_array[0]);
 			$required = $length - 3;
 			$post_title = substr($post_array[0], 2, $required);
-			$title_in_body = 'true';
+			$title_in_body = true;
 			$content = substr($content,$length);
 		}
 		
@@ -86,7 +88,7 @@ foreach($filedates as $file) {
 		$Parsedown = new ParsedownExtra();
 		$content = $Parsedown->text($content);
 		
-		if ($post_title != '') {
+		if ($title_in_body === true && $post_title != '') {
 			$h2 = '<span style="font-size: 24px; text-transform: uppercase;"><strong>' . $post_title . '</strong></span></br>';
 		}
 		
