@@ -1,5 +1,13 @@
 # Changelog
 
+## 10th Feb 2023
+
+Should have fixed the Daily Feed 'titles' issue.
+
+Files updated:
+
+- dailyfeed.php
+
 ## 6th Feb 2023
 
 New feature: choose date format in setup (choices are dd/mm/yyyy & mm/dd/yyyy)
