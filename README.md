@@ -4,13 +4,13 @@
 
 The name is an amalgam of hybrid and blog. It is a different approach to database driven systems partly inspired by Static Site Generators but with a more dynamic approach. Rather than having to build the site after each change, hyblog uses dynamic files which write/pull posts and comments to/from .md files on the fly.
 
+See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) for updates.
+
 Check out the demo site [here](https://colinwalker.me.uk).
 
 ### Example sites:
 
 - [Dispatches](https://log.kvl.me) – a good example of what can be done when you tweak hyblog and change the styles
-
-See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) for updates.
 
 ### Installation
 
@@ -85,6 +85,10 @@ After comments have been submitted, hyblog automatically pulls them out of the .
 **The About page**
 
 The about page is empty by default and will initially display "Nothing here yet". Double-clicking that text will show a form where you can enter your required about information in markdown. You can edit it at any time by double-clicking the text when logged in. You've guessed it, this is saved back to a file called about.md under http(s)://{your chosen url}/about/
+
+**Custom Pages**
+
+A UI for creating custom pages in located in /admin - see the changelog for details
 
 **RSS Feeds**
 
