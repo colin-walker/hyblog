@@ -6,6 +6,10 @@ The name is an amalgam of hybrid and blog. It is a different approach to databas
 
 Check out the demo site [here](https://colinwalker.me.uk).
 
+### Example sites:
+
+- [Despatches](https://log.kvl.me) – a good example of what can be done when you tweak hyblog and change the styles
+
 See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) for updates.
 
 ### Installation
