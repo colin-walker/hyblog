@@ -13,7 +13,7 @@ require_once('content_filters.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-$target_dir = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT']
+$target_dir = dirname(__FILE__);
 
 $auth = file_get_contents($target_dir . '/session.php');
 
@@ -43,7 +43,6 @@ $files = glob($target_dir.'/*/*/*/*.md');
 		foreach($filedate as $file) {
 			if ($prev_check == $file) {
 					header("location: ".BASE_URL."?date=".$prev_check);
-				    //echo '<meta http-equiv="refresh" content="0; URL='.BASE_URL.'?date='.$prev_check.'">';
 				    exit;
 				}
 			}
@@ -262,40 +261,42 @@ if (isset($posts)) {
 					}
 				}
 				
-				$before = date('Y-m-d', strtotime($filedate[0].' -1 day'));
-				$length = count($filedate);
-				$newest = $filedate[$length-1];
-				$after  = date('Y-m-d', strtotime($newest.' +1 day'));
-				
-				rsort($filedate);
-				
-				do {
-				    foreach($filedate as $file) {
-						if ($prev_check == $file) {
-							echo "<div class='nav-previous'><a href='".BASE_URL."?date=$prev_check'>&lt;&lt;</a></div>";
-							$match = true;
+				if(isset($filedate)) {
+					$before = date('Y-m-d', strtotime($filedate[0].' -1 day'));
+					$length = count($filedate);
+					$newest = $filedate[$length-1];
+					$after  = date('Y-m-d', strtotime($newest.' +1 day'));
+					
+					rsort($filedate);
+					
+					do {
+						foreach($filedate as $file) {
+							if ($prev_check == $file) {
+								echo "<div class='nav-previous'><a href='".BASE_URL."?date=$prev_check'>&lt;&lt;</a></div>";
+								$match = true;
+							}
 						}
-				    }
-						$prev_check = date('Y-m-d', strtotime($prev_check.' -1 day'));
-					} while (strtotime($prev_check) >= strtotime($before) && $match != true);
-				
-				$match = false;
-				sort($filedate);
+							$prev_check = date('Y-m-d', strtotime($prev_check.' -1 day'));
+						} while (strtotime($prev_check) >= strtotime($before) && $match != true);
+					
+					$match = false;
+					sort($filedate);
 
-                do {
-				foreach($filedate as $file) {
-					if ($next_check == $file) {
-					    if ($next_check == $today) {
-					        $next = '';
-					    } else {
-					        $next = '?date='.$next_check;
-					    }
-						echo "<div class='nav-next'><a href='".BASE_URL."$next'>&gt;&gt;</a></div>";
-							$match = true;
-					}
-				}
-				$next_check = date('Y-m-d', strtotime($next_check.' +1 day'));
-				} while (strtotime($next_check) <= strtotime($after) && $match != true);
+					do {
+						foreach($filedate as $file) {
+							if ($next_check == $file) {
+								if ($next_check == $today) {
+									$next = '';
+								} else {
+									$next = '?date='.$next_check;
+								}
+								echo "<div class='nav-next'><a href='".BASE_URL."$next'>&gt;&gt;</a></div>";
+								$match = true;
+							}
+						}
+						$next_check = date('Y-m-d', strtotime($next_check.' +1 day'));
+					} while (strtotime($next_check) <= strtotime($after) && $match != true);
+				}	
 				
 ?>
 			</div>
