@@ -25,7 +25,15 @@ Header set x-content-type-options "nosniff"
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-ErrorDocument 404 /404.php
+# ErrorDocument 404 /404.php
+
+# Get the folder name dynamically
+RewriteCond %{REQUEST_URI} ^/(.+?)/
+RewriteRule .* - [E=FOLDER_NAME:%1]
+
+# Set the custom 404 error document
+ErrorDocument 404 /%{ENV:FOLDER_NAME}/404.php
+    
 RewriteCond %{SERVER_PORT} !^443$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
 </IfModule>

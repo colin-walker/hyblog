@@ -17,7 +17,7 @@ $title = str_replace('_', ' ', ucfirst($page));
 $match = false;
 
 foreach(glob($target_dir.'/pages/*.md') as $file) {
-	$pagename = rtrim(explode('/',$file)[5], '.md');
+	$pagename = pathinfo($file, PATHINFO_FILENAME);
 	if ($pagename == $page) {
 		$match = true;
 	}
@@ -28,6 +28,9 @@ $match === false ? header("Location: 404.php") : null;
 $content = file_get_contents($target_dir.'/pages/'.$page.'.md');
 $Parsedown = new ParsedownExtra();
 $content = $Parsedown->text($content);
+
+$fullUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$path = pathinfo($fullUrl, PATHINFO_DIRNAME);
 
 ?>
 
@@ -41,7 +44,7 @@ $content = $Parsedown->text($content);
   	<link rel="stylesheet" href="style_min.css" type="text/css" media="all">
     <link rel="home alternate" type="application/rss+xml" title="hyblog feed" href="<?php echo BASE_URL; ?>hyblog.xml">
     <script>
-    	history.replaceState(null, '<?php echo $title; ?>', '../<?php echo $page; ?>/');
+    	history.replaceState(null, '<?php echo $title; ?>', '<?php echo $path.'/'.$page; ?>');
     </script>
 </head>
 

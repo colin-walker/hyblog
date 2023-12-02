@@ -66,6 +66,11 @@ if (isset($_POST['title'])) {
 				<main id="main" class="site-main today-container">
 					<div class="page-content">
 						<br>
+						<div style="margin-bottom: 50px;">
+							<a style="float:left;" href="addpage.php"><b>Add a page</b></a>
+							<a style="float:right;" href="admin/"><b>Admin</b></a>
+						</div>
+						<div style="clear: both;"></div>
 <?php
 
 if (isset($_GET['p'])) {
@@ -89,11 +94,10 @@ if (isset($_GET['p'])) {
 } else {
 
 	if (!empty(glob($target_dir.'*.md'))) {
-		echo '<p><a href="addpage.php"><b>Add a page</b></a></p>';
 		echo '<h2>Edit or delete pages</h2>';
 		echo '<br><p>';
 		foreach(glob($target_dir.'*.md') as $file) {
-			$pagename = rtrim(explode('/',$file)[5], '.md');
+			$pagename = pathinfo($file, PATHINFO_FILENAME);
 			$title = str_replace('_', ' ', $pagename);
 			echo '<li style="float: left;"><a href="managepages.php?p='.$pagename.'"><b>'.ucfirst($title).'</b></a></li><img hx-target="body" hx-get="delpage.php?p='.$pagename.'" hx-confirm="Are you sure?" title="Delete page" src="../images/red-cross.png" style="width: 16px; float: right; cursor: pointer;"><br><br>';
 		}

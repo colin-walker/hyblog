@@ -31,23 +31,25 @@ $files = glob($target_dir.'/*/*/*/*.md');
 		}
 	}
 	
-	$prev_check = date('Y-m-d', strtotime($date .' -1 day'));
-	$before = date('Y-m-d', strtotime($filedate[0].' -1 day'));
-	$length = count($filedate);
-	$newest = $filedate[$length-1];
-	$after  = date('Y-m-d', strtotime($newest.' +1 day'));
+	if(isset($filedate) && is_array($filedate)) {
+		$prev_check = date('Y-m-d', strtotime($date .' -1 day'));
+		$before = date('Y-m-d', strtotime($filedate[0].' -1 day'));
+		$length = count($filedate);
+		$newest = $filedate[$length-1];
+		$after  = date('Y-m-d', strtotime($newest.' +1 day'));
 				
-	rsort($filedate);
+		rsort($filedate);
 	
-	do {
-		foreach($filedate as $file) {
-			if ($prev_check == $file) {
-					header("location: ".BASE_URL."?date=".$prev_check);
-				    exit;
+		do {
+			foreach($filedate as $file) {
+				if ($prev_check == $file) {
+						header("location: ".BASE_URL."?date=".$prev_check);
+						exit;
+					}
 				}
-			}
-			$prev_check = date('Y-m-d', strtotime($prev_check .' -1 day'));
-	}  while (strtotime($prev_check) >= strtotime($before));
+				$prev_check = date('Y-m-d', strtotime($prev_check .' -1 day'));
+		}  while (strtotime($prev_check) >= strtotime($before));
+	}
 }
 
 ?>
@@ -261,7 +263,7 @@ if (isset($posts)) {
 					}
 				}
 				
-				if(isset($filedate)) {
+				if(isset($filedate) && is_array($filedate)) {
 					$before = date('Y-m-d', strtotime($filedate[0].' -1 day'));
 					$length = count($filedate);
 					$newest = $filedate[$length-1];
@@ -272,7 +274,9 @@ if (isset($posts)) {
 					do {
 						foreach($filedate as $file) {
 							if ($prev_check == $file) {
-								echo "<div class='nav-previous'><a href='".BASE_URL."?date=$prev_check'>&lt;&lt;</a></div>";
+								echo "<div class='nav-previous'><a href='".BASE_URL."?date=$prev_check'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-arrow-left-circle' viewBox='0 0 16 16'>
+								<path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z'/>
+							  </svg></a></div>";
 								$match = true;
 							}
 						}
@@ -290,7 +294,9 @@ if (isset($posts)) {
 								} else {
 									$next = '?date='.$next_check;
 								}
-								echo "<div class='nav-next'><a href='".BASE_URL."$next'>&gt;&gt;</a></div>";
+								echo "<div class='nav-next'><a href='".BASE_URL."$next'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-arrow-right-circle' viewBox='0 0 16 16'>
+								<path fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z'/>
+							  </svg></a></div>";
 								$match = true;
 							}
 						}

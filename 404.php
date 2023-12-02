@@ -12,10 +12,10 @@ $target_dir = dirname(__FILE__).'/pages/';
 $pagenames = array();
 
 foreach(glob($target_dir.'*.md') as $i=>$file) {
-	$pagenames[$i] = rtrim(explode('/',$file)[5], '.md');
+	$pagenames[$i] = pathinfo($file, PATHINFO_FILENAME);
 }
 
-$erroruri = trim($_SERVER['REQUEST_URI'], '/');
+$erroruri = end(explode('/', trim($_SERVER['REQUEST_URI'], '/')));
 
 foreach($pagenames as $pagename) {
 	if ($erroruri == $pagename) {

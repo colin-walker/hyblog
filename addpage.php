@@ -29,7 +29,7 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 
 	if (!empty(glob($target_dir.'*.md'))) {
 		foreach(glob($target_dir.'*.md') as $file) {
-			$pagename = rtrim(explode('/',$file)[5], '.md');
+			$pagenames[$i] = pathinfo($file, PATHINFO_FILENAME);
 			if ($pagename == $filename) {
 				echo '</br><h2>Page name already used.</h2>';
 				$dupe = true;
@@ -38,7 +38,6 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 	}
 	if($dupe === false) {
 		$page = $target_dir.$filename.'.md';
-		//var_dump($page);
 		file_put_contents($page, $content);
 		header("Location: managepages.php");
 		exit;

@@ -25,7 +25,7 @@ $auth = file_get_contents($target_dir . '/session.php');
 $pages = $target_dir.'/pages/';
 
 foreach(glob($pages.'*.md') as $i=>$file) {
-	$pagename = rtrim(explode('/',$file)[5], '.md');
+	$pagename = pathinfo($file, PATHINFO_FILENAME);
 	$link = str_replace('_', ' ', $pagename);
 	echo '<a href="'.BASE_URL.$pagename.'">'.$link.'</a>';
 	echo '</br>';
@@ -39,6 +39,9 @@ if (!empty($pagename)) {
     <a href="<?php echo BASE_URL; ?>about/">ABOUT</a>
     </br>
     <a href="<?php echo BASE_URL; ?>colophon/">COLOPHON</a>
+    </br>
+    </br>
+    <a href="https://colinwalker.blog/blog/">(b)log-In</a>
     
 <?php
     if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
