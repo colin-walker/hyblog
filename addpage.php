@@ -18,22 +18,31 @@ if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
 $target_dir = $root.'/pages/';
 
 $content = '';
+$dupe = false;
 
-if (isset($_POST['addpage'])) {
+//echo $target_dir;
+
+if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 	$title = $_POST['title'];
 	$content = $_POST['content'];
 	$filename = strtolower(str_replace(' ', '_', $title));
 
-	foreach(glob($target_dir.'*.md') as $file) {
-		$pagename = rtrim(explode('/',$file)[5], '.md');
-		if ($pagename == $filename) {
-			echo '</br><h2>Page name already used.</h2>';
-		} else {
-			$page = $target_dir.$filename.'.md';
-			file_put_contents($page, $content);
-			header("Location: managepages.php");
+	if (!empty(glob($target_dir.'*.md'))) {
+		foreach(glob($target_dir.'*.md') as $file) {
+			$pagename = rtrim(explode('/',$file)[5], '.md');
+			if ($pagename == $filename) {
+				echo '</br><h2>Page name already used.</h2>';
+				$dupe = true;
+			}
 		}
 	}
+	if($dupe === false) {
+		$page = $target_dir.$filename.'.md';
+		//var_dump($page);
+		file_put_contents($page, $content);
+		header("Location: managepages.php");
+		exit;
+	}	
 }
 
 ?>
@@ -62,7 +71,7 @@ if (isset($_POST['addpage'])) {
 				<main id="main" class="site-main today-container">
 					</br>
 					<form name="form" method="post">
-						<input type="hidden" name="addpage">
+						<input type="hidden" name="addpage" value="add">
 						<input type="text" name="title" class="form-control" placeholder="Title" required>
 						<textarea name="content" rows="10" class="form-control" style="height: 300px; font-family: sans-serif" placeholder="Page content (Markdown)" required><?php echo $content; ?></textarea>
 						<div style="width: 93%; margin: 0px auto;">
