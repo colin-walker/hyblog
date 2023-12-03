@@ -37,7 +37,7 @@ if (isset($_GET['p'])) {
 
 	<form name="form" method="post" action="<?php echo BASE_URL; ?>updatepage.php?p=<?php echo $page; ?>">
 		<textarea rows="10" id="content" name="content" class="text"><?php echo $content; ?></textarea>
-		<a href="<?php echo BASE_URL.$page; ?>/"><img  loading="lazy" style="width: 20px; float: left; position: relative; top: -1px; cursor: pointer;" alt="cancel" src="../../images/cancel.png" /></a>
+		<a href="<?php echo BASE_URL.$page; ?>"><img  loading="lazy" style="width: 20px; float: left; position: relative; top: -1px; cursor: pointer;" alt="cancel" src="../../images/cancel.png" /></a>
 		<input type="submit" style ="float: right;" value="update" />
 	</form>
 	
