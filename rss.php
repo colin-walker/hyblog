@@ -36,8 +36,9 @@ fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<source:account service="hyblog"><?php echo NAME;?></source:account>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
-if (!isset($_GET['p']) || (isset($_GET['p'])&& $_GET['p'] != 'clearnow')) {
-	NOWNS == '' ? $nownsname = $_GET['p'] : $nownsname = NOWNS;
+if (NOWNS != '') {
+	//NOWNS == '' ? $nownsname = $_GET['p'] : $nownsname = NOWNS;
+	$nownsname = NOWNS;
 	$nowns = $target_dir.'/pages/'.$nownsname.'.md';
 	$title = ucfirst(str_replace('_', ' ', $nownsname));
 	$content = file_get_contents($nowns);

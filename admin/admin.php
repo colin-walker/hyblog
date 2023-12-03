@@ -262,7 +262,7 @@ function changeConfig($rebuild = null) {
 						echo '<option value=""></option>'.PHP_EOL;
 					}
 					foreach(glob($pages.'*.md') as $i=>$file) {
-						$pagename = rtrim(explode('/',$file)[5], '.md');
+						$pagename = pathinfo($file, PATHINFO_FILENAME);
 						echo '<option value="'.$pagename.'"';
 						if($nowns == $pagename) { echo 'selected'; };
 						echo '>'.$pagename.'</option>'.PHP_EOL;

@@ -29,7 +29,7 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 
 	if (!empty(glob($target_dir.'*.md'))) {
 		foreach(glob($target_dir.'*.md') as $file) {
-			$pagenames[$i] = pathinfo($file, PATHINFO_FILENAME);
+			$pagename = pathinfo($file, PATHINFO_FILENAME);
 			if ($pagename == $filename) {
 				echo '</br><h2>Page name already used.</h2>';
 				$dupe = true;

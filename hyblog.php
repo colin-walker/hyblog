@@ -147,8 +147,6 @@ if (file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {
 	}
 }
 
-
-
 if (isset($posts)) {
 	$explode = array_filter(explode('@@', $posts), "strlen");
 	foreach ($explode as $p=>$post) {
