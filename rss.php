@@ -27,17 +27,17 @@ fwrite($rssfile, '<rss xmlns:source="http://source.scripting.com/"'.PHP_EOL);
 fwrite($rssfile, 'xmlns:now="https://nowns.work" version="2.0"'.PHP_EOL);
 fwrite($rssfile, '>'.PHP_EOL);
 fwrite($rssfile, '<channel>'.PHP_EOL);
-fwrite($rssfile, '<title><?php echo NAME;?></title>'.PHP_EOL);
-fwrite($rssfile, '<description>Posts from <?php echo NAME;?></description>'.PHP_EOL);
+fwrite($rssfile, '<title>'.NAME.'</title>'.PHP_EOL);
+fwrite($rssfile, '<description>Posts from '.NAME.'</description>'.PHP_EOL);
 fwrite($rssfile, '<link>'.BASE_URL.'</link>'.PHP_EOL);
 fwrite($rssfile, '<lastBuildDate>' . gmdate('D, d M Y H:i:s') . ' GMT</lastBuildDate>'.PHP_EOL);
 fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>'.PHP_EOL);
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
-fwrite($rssfile, '<source:account service="hyblog"><?php echo NAME;?></source:account>'.PHP_EOL);
+fwrite($rssfile, '<source:account service="hyblog">'.NAME.'</source:account>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
-if (!isset($_GET['p']) || (isset($_GET['p'])&& $_GET['p'] != 'clearnow')) {
-	NOWNS == '' ? $nownsname = $_GET['p'] : $nownsname = NOWNS;
+if (NOWNS != '') {
+	$nownsname = NOWNS;
 	$nowns = $target_dir.'/pages/'.$nownsname.'.md';
 	$title = ucfirst(str_replace('_', ' ', $nownsname));
 	$content = file_get_contents($nowns);

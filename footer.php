@@ -34,14 +34,13 @@ if (!empty($pagename)) {
 	echo '</br>';
 }
 ?>
-    <a href="<?php echo BASE_URL; ?>feeds/" title="Subscribe to regular & daily RSS feeds">Feeds</a>
+    <a href="<?php echo BASE_URL; ?>feeds/" title="Subscribe to RSS feeds">Feeds</a>
     </br>
     <a href="<?php echo BASE_URL; ?>about/">ABOUT</a>
     </br>
     <a href="<?php echo BASE_URL; ?>colophon/">COLOPHON</a>
     </br>
     </br>
-    <a href="https://colinwalker.blog/blog/">(b)log-In</a>
     
 <?php
     if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
