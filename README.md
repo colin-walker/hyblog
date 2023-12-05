@@ -10,7 +10,7 @@ Check out the demo site [here](https://colinwalker.me.uk).
 
 ### Example sites:
 
-- [Musings](https://log.amitg.net/) - another example of a customised installation
+- [Dispatches](https://log.kvl.me) – a good example of what can be done when you tweak hyblog and change the styles
 
 ### Installation
 

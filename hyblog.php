@@ -255,9 +255,13 @@ if (isset($posts)) {
 				$next_check = date('Y-m-d', strtotime($date .' +1 day'));
 				$match = false;
 				
-				foreach(glob($target_dir.'/posts/*/*/*.md') as $file) {
-					if (substr(explode('/',$file)[7],0,1) != 'c') {
-						$filedates[] = substr(explode('/',$file)[7],0,10);
+				foreach (glob($target_dir . '/posts/*/*/*.md') as $file) {
+					$parts = explode('/', $file);
+					$index = count($parts) - 1; // The last part of the path contains the file name
+					$filename = $parts[$index];
+				
+					if (substr($filename, 0, 1) != 'c') {
+						$filedates[] = substr($filename, 0, 10);
 					}
 				}
 				
