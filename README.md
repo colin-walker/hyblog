@@ -4,8 +4,6 @@
 
 The name is an amalgam of hybrid and blog. It is a different approach to database driven systems partly inspired by Static Site Generators but with a more dynamic approach. Rather than having to build the site after each change, hyblog uses dynamic files which write/pull posts and comments to/from .md files on the fly.
 
-See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) for updates.
-
 Check out the demo site [here](https://colinwalker.me.uk).
 
 ### Installation
