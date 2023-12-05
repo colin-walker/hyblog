@@ -8,10 +8,6 @@ See [changelog](https://github.com/colin-walker/hyblog/blob/main/changelog.md) f
 
 Check out the demo site [here](https://colinwalker.me.uk).
 
-### Example sites:
-
-- [Dispatches](https://log.kvl.me) – a good example of what can be done when you tweak hyblog and change the styles
-
 ### Installation
 
 - copy all files and folders to your desired path - the repository includes example .htaccess files to get you going
