@@ -9,7 +9,7 @@ require_once('config.php');
 
 $target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
-$date = $_GET['date'];
+$date = date('Y-m-d');
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
 $day = date('d', strtotime($date));
@@ -27,7 +27,7 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 	
 	include('rss.php');
 	
-	header("location: ".BASE_URL."?date=" . $_GET['date']);
+	header("location: ".BASE_URL."?date=" . $date);
 	exit();
 }
 
