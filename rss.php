@@ -51,12 +51,16 @@ if (NOWNS != '') {
 	fwrite($rssfile, '<now:timestamp>'.$time.'</now:timestamp>'.PHP_EOL);
 }
 
-$postfiles = glob($target_dir.'/*/*/*/*.md');
-foreach($postfiles as $postfile) {
-	if (substr(explode('/',$postfile)[7],0,1) != 'c') {
-		$filedates[] = substr(explode('/',$postfile)[7],0,10);
+foreach (glob($target_dir . '/posts/*/*/*.md') as $file) {
+	$parts = explode('/', $file);
+	$index = count($parts) - 1;
+	$filename = $parts[$index];
+
+	if (substr($filename, 0, 1) != 'c') {
+		$filedates[] = substr($filename, 0, 10);
 	}
 }
+
 rsort($filedates);
 array_splice($filedates,10);
 
